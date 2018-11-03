@@ -49,7 +49,17 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Ürün Fiyatı <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="urun_fiyat" class="date-picker form-control col-md-7 col-xs-12"  type="text" />
+                          <input id="urun_fiyat" 
+                          
+                          onkeyup="var pos=this.selectionStart;
+									var size = this.value.length;	
+									this.value=this.value.replace(/,/g,'.').replace(/[^0-9,'.']+/g, '');
+             						if(this.value.indexOf('.')!=this.value.lastIndexOf('.'))
+									this.value=this.value.substring(0,size-1);"
+									onfocus="this.value=''" 
+										
+                          
+                          class="date-picker form-control col-md-7 col-xs-12"  type="text" />
                         </div>
                       </div>
                       
