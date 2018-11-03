@@ -1,0 +1,8 @@
+
+kaydet, org.hibernate.PropertyValueException: not-null property references a null or transient value : com.vektorel.models.tblogrenci.okulno, 2018-09-29T11:56:06.655, Muhammet HOCA
+----------------------------------------------------
+HATA OLAYI .....: 2018-09-29T11:59:21.940
+METHOD ADI .....: kaydet
+HATA ��ER��� .....: org.hibernate.PropertyValueException: not-null property references a null or transient value : com.vektorel.models.tblogrenci.okulno
+KULLANICI ADI .....: Muhammet HOCA
+---------------------------------------------------

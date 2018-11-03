@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Stok Girişi Ekranı</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<br />
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12"
+						for="first-name">Ürün Seçiniz <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+
+						<h:selectOneMenu class="form-control"
+							value="#{stokgirisiBean.secilenurunid}">
+							<f:selectItem itemValue="-1" itemLabel="Seçiniz..." />
+							<f:selectItems value="#{stokgirisiBean.urunListesi}" var="ls"
+								itemLabel="#{ls.ad}" itemValue="#{ls.id}" />
+
+						</h:selectOneMenu>
+
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12"
+						for="first-name">İl Seçiniz <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+
+						<h:selectOneMenu class="form-control"
+							value="#{stokgirisiBean.secilenilid}">
+							<f:ajax render="select_ilce"/>
+							<f:selectItem itemValue="-1" itemLabel="İl Seçiniz..." />
+							<f:selectItems value="#{stokgirisiBean.ilListesi}" var="ls"
+								itemLabel="#{ls.ad}" itemValue="#{ls.id}" />
+
+						</h:selectOneMenu>
+
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12"
+						for="first-name">İlçe Seçiniz <span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+
+						<h:selectOneMenu id="select_ilce" class="form-control"
+							value="#{stokgirisiBean.secilenilceid}">
+							<f:selectItem itemValue="-1" itemLabel="İlçe eçiniz..." />
+							<f:selectItems value="#{stokgirisiBean.ilceListesi}" var="ls"
+								itemLabel="#{ls.ad}" itemValue="#{ls.id}" />
+
+						</h:selectOneMenu>
+
+
+					</div>
+				</div>
+
+
+				<div class="ln_solid"></div>
+				<div class="form-group">
+					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+						<button class="btn btn-primary" type="button">Cancel</button>
+						<button class="btn btn-primary" type="reset">Reset</button>
+
+						<h:commandButton type="submit" class="btn btn-success"
+							id="btnkaydet" value="KAYDET" action="#{stokgirisiBean.kaydet}" />
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<br />
+
+<div class="row">
+
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Stok Giriş Listesi Tablosu</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+
+				<table id="datatable" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Ürün Adı</th>
+							<th>Firma Adı</th>
+							<th>İl</th>
+							<th>İlçe</th>
+							<th>Adet</th>
+							<th>İşlemler</th>
+
+						</tr>
+					</thead>
+
+
+					<tbody>
+						<ui:repeat var="ls" value="#{stokTanimlamaBean.urunListesi}">
+
+							<tr>
+								<td id="td_id#{ls.id}">#{ls.id}</td>
+								<td id="td_ad#{ls.id}">#{ls.ad}</td>
+								<td id="td_adet#{ls.id}">#{ls.adet}</td>
+								<td id="td_barkod#{ls.id}">#{ls.barkod}</td>
+								<td id="td_fiyat#{ls.id}">#{ls.fiyat} tl</td>
+								<td id="td_kdv#{ls.id}">#{ls.kdv}</td>
+								<td style="text-align: right">
+									<button type="button" onclick="duzenle(#{ls.id})"
+										class="btn btn-primary" data-toggle="modal"
+										data-target=".DuzenleModal">
+
+										<i class="fa fa-edit"></i>
+
+									</button>
+									<button type="button" onclick="sil(#{ls.id})"
+										class="btn btn-danger" data-toggle="modal"
+										data-target=".SilModal">
+
+										<i class="fa fa-remove"></i>
+
+									</button>
+
+								</td>
+
+							</tr>
+
+						</ui:repeat>
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+</html>

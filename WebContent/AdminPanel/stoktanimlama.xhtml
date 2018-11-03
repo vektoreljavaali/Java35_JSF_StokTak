@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+ 			<div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Stok Tanımlama Ekranı </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                     
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Ürün Adı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="urun_adi"  class="form-control col-md-7 col-xs-12" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ürün Miktarı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="urun_miktari" name="last-name"  class="form-control col-md-7 col-xs-12" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ürün Barkodu</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="urun_barkod" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" />
+                        </div>
+                      </div>
+                    
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ürün Fiyatı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="urun_fiyat" class="date-picker form-control col-md-7 col-xs-12"  type="text" />
+                        </div>
+                      </div>
+                      
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ürün KDV si <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="urun_kdv" class="date-picker form-control col-md-7 col-xs-12"  type="text" />
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button class="btn btn-primary" type="button">Cancel</button>
+						  <button class="btn btn-primary" type="reset">Reset</button>
+                        <!--   <button type="submit" class="btn btn-success" onclick="kaydet()">Submit</button> -->
+                        <h:commandButton type="submit" class="btn btn-success" 
+                        id="btnkaydet" value="KAYDET" onclick="kaydet()" 
+                        action="#{stokTanimlamaBean.kaydet}"/>
+                        
+                        </div>
+                      </div>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<br/>
+
+<div class="row">
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Ürün Listesi Tablosu </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                     
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                   
+                    <table id="datatable" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Ürün Adı</th>
+                          <th>Ürün Miktarı</th>
+                          <th>Ürün Barkodu</th>
+                          <th>Ürün Fiyatı</th>
+                          <th>Ürün KDV</th>
+                          <th>İşlemler</th>
+                          
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                      <ui:repeat var="ls" value="#{stokTanimlamaBean.urunListesi}">
+                      
+                       <tr>
+                          <td id="td_id#{ls.id}">#{ls.id}</td>
+                          <td id="td_ad#{ls.id}">#{ls.ad}</td>
+                          <td id="td_adet#{ls.id}">#{ls.adet}</td>
+                          <td id="td_barkod#{ls.id}">#{ls.barkod}</td>
+                          <td id="td_fiyat#{ls.id}">#{ls.fiyat} tl</td>
+                          <td id="td_kdv#{ls.id}">#{ls.kdv}</td>
+                          <td style="text-align:right">
+	                        <button type="button" onclick="duzenle(#{ls.id})" 
+	                        class="btn btn-primary" data-toggle="modal" 
+	                        data-target=".DuzenleModal">
+							
+							<i class="fa fa-edit"></i> 
+							
+							</button>
+							<button type="button" onclick="sil(#{ls.id})" 
+							class="btn btn-danger" data-toggle="modal" 
+							data-target=".SilModal">
+							
+							  <i class="fa fa-remove"></i> 
+							  
+							</button>
+							
+				         </td>
+                         
+                        </tr>
+                      
+                      </ui:repeat>
+                       
+                      
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+</div>
+
+
+<!-- BU KISIMDA DÜZENLE VE SİL İÇİN MODAL TANIMLAMASI YAPILMIŞTIR -->
+
+  <!-- Small modal -->
+              
+                  <div class="modal fade DuzenleModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel2">Ürün Düzenleme</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Aktif Kayıt Bilgileri</h4>
+                          
+                          <div class="form-group">
+                        <label class="control-label col-md-12" for="first-name">Ürün Adı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-12">
+                          <input type="text" id="d_urun_adi" class="form-control col-md-7 col-xs-12" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-12" for="last-name">Ürün Miktarı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-12">
+                          <input type="text" id="d_urun_miktari" name="last-name" class="form-control col-md-7 col-xs-12" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-12">Ürün Barkodu</label>
+                        <div class="col-md-12">
+                          <input id="d_urun_barkod" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" />
+                        </div>
+                      </div>
+                    
+                      <div class="form-group">
+                        <label class="control-label col-md-12">Ürün Fiyatı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-12">
+                          <input id="d_urun_fiyat" class="date-picker form-control col-md-7 col-xs-12"  type="text" />
+                        </div>
+                      </div>
+                      
+                        <div class="form-group">
+                        <label class="control-label col-md-12">Ürün KDV si <span class="required">*</span>
+                        </label>
+                        <div class="col-md-12">
+                          <input id="d_urun_kdv" class="date-picker form-control col-md-7 col-xs-12" type="text" />
+                        </div>
+                      </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           <h:commandButton type="submit" class="btn btn-primary" 
+                        id="btndkaydet" value="KAYDET" onclick="duzenlekayit()" 
+                        action="#{stokTanimlamaBean.duzenle}"/>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+               <!-- /modals -->
+
+
+                  <div class="modal fade SilModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel2">Ürün Sil</h4>
+                        </div>
+                        <div class="modal-body" style="text-align:center">
+                      
+                        <img  style="width:100px;height:100px" src="images/delete.png" />
+                        
+                        
+                        
+                          <h4>DİKKAT!! İLGİLİ ÜRÜNÜ SİLMEK İSTİYOR MUSUNUZ?</h4>
+                        
+                       
+                          
+                        
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           <h:commandButton style="width:100px" type="submit" class="btn btn-danger" 
+                        id="btndsil" value="   SİL   "  action="#{stokTanimlamaBean.sil}"/>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+<!-- MODAL BİTİŞ -->
+
+
+
+
+
+
+<div class="hide">
+<h:outputLabel value="Ürün id"/><br />
+<h:inputText id="txtid" value="#{stokTanimlamaBean.urun.id}"/><br />
+<h:outputLabel value="Ürün Adı"/><br />
+<h:inputText id="txtad" value="#{stokTanimlamaBean.urun.ad}"/><br />
+<h:outputLabel value="Ürün Adet"/><br />
+<h:inputText id="txtadet" value="#{stokTanimlamaBean.urun.adet}"/><br />
+<h:outputLabel value="Ürün Barkod"/><br />
+<h:inputText id="txtbarkod" value="#{stokTanimlamaBean.urun.barkod}"/><br />
+<h:outputLabel value="Ürün Fiyat"/><br />
+<h:inputText id="txtfiyat" value="#{stokTanimlamaBean.urun.fiyat}"/><br />
+<h:outputLabel value="Ürün KDV"/><br />
+<h:inputText id="txtkdv" value="#{stokTanimlamaBean.urun.kdv}"/><br />
+<br />
+
+</div>
+
+<script>
+var duzenleid;
+function kaydet(){
+	var urunadi = document.getElementById("urun_adi").value;
+	var urunfiyat = document.getElementById("urun_fiyat").value;
+	var urunadet = document.getElementById("urun_miktari").value;
+	var urunkdv = document.getElementById("urun_kdv").value;
+	var urunbarkod = document.getElementById("urun_barkod").value;
+	
+	document.getElementById("frmanasayfa:txtad").value = urunadi;
+	document.getElementById("frmanasayfa:txtadet").value = urunadet;
+	document.getElementById("frmanasayfa:txtbarkod").value = urunbarkod;
+	document.getElementById("frmanasayfa:txtfiyat").value = urunfiyat;
+	document.getElementById("frmanasayfa:txtkdv").value = urunkdv;
+	
+}
+
+function duzenle(id){
+	duzenleid = id;
+	var urunadi = document.getElementById("td_ad"+id).innerText;
+	var urunfiyat = document.getElementById("td_fiyat"+id).innerText;
+	var urunadet = document.getElementById("td_adet"+id).innerText;
+	var urunkdv = document.getElementById("td_kdv"+id).innerText;
+	var urunbarkod = document.getElementById("td_barkod"+id).innerText;
+	
+	document.getElementById("d_urun_adi").value = urunadi;
+	document.getElementById("d_urun_fiyat").value = urunfiyat;
+	document.getElementById("d_urun_miktari").value = urunadet;
+	document.getElementById("d_urun_kdv").value = urunkdv;
+	document.getElementById("d_urun_barkod").value = urunbarkod;
+	
+}
+function duzenlekayit(){
+	var urunadi = document.getElementById("d_urun_adi").value;
+	var urunfiyat = document.getElementById("d_urun_fiyat").value;
+	var urunadet = document.getElementById("d_urun_miktari").value;
+	var urunkdv = document.getElementById("d_urun_kdv").value;
+	var urunbarkod = document.getElementById("d_urun_barkod").value;
+	
+	document.getElementById("frmanasayfa:txtid").value = duzenleid;
+	document.getElementById("frmanasayfa:txtad").value = urunadi;
+	document.getElementById("frmanasayfa:txtadet").value = urunadet;
+	document.getElementById("frmanasayfa:txtbarkod").value = urunbarkod;
+	document.getElementById("frmanasayfa:txtfiyat").value = urunfiyat;
+	document.getElementById("frmanasayfa:txtkdv").value = urunkdv;
+	
+}
+
+function sil(id){
+	document.getElementById("frmanasayfa:txtid").value = id;	
+}
+
+</script>
+</html>
