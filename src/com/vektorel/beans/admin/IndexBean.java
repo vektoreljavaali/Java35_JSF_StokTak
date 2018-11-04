@@ -3,12 +3,17 @@ package com.vektorel.beans.admin;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.vektorel.models.tblusers;
+import com.vektorel.utils.login.StaticValues;
+
 @ManagedBean(name="adminIndexBean")
 @SessionScoped
 public class IndexBean {
 
 	private String url="dashboard.xhtml";
 
+	private tblusers usr = new tblusers();
+	
 	public String getUrl() {
 		return url;
 	}
@@ -26,5 +31,14 @@ public class IndexBean {
 		}
 		
 	}
+
+	public tblusers getUsr() {
+		return StaticValues.usr;
+	}
+
+	public void setUsr(tblusers usr) {
+		this.usr = usr;
+	}
+	
 	
 }

@@ -54,6 +54,7 @@ Contributor(s):
     <mapping class="com.vektorel.models.tblurun"></mapping>
     <mapping class="com.vektorel.models.tblil"></mapping>
     <mapping class="com.vektorel.models.tblilce"></mapping>
+    <mapping class="com.vektorel.models.tblusers"></mapping>
    
     
   </session-factory>
