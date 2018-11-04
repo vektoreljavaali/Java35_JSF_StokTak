@@ -14,4 +14,17 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
+  
+  <filter-mapping>
+    <filter-name>girisFilitresi</filter-name>
+    <url-pattern>/AdminPanel/*</url-pattern>
+  </filter-mapping>
+    
+  <filter>
+  		<filter-name>girisFilitresi</filter-name>
+  		<filter-class>com.vektorel.utils.login.LoginFilter</filter-class>
+  </filter>
+  
+  
+ 
 </web-app>
