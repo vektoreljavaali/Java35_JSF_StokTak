@@ -78,8 +78,20 @@
 					</div>
 				</div>
 
+				<div class="form_group">
+				<label class="control-label col-md-3 col-sm-3 col-xs-12"
+						for="first-name">Resim URL Giriniz <span class="required">*</span>
+					</label>
+								
+				<div class="col-md-6 col-sm-6 col-xs-12">
+				<h:inputText class="form-control col-md-6 col-sm-6 col-xs-12" value="#{stokgirisiBean.url}"/>
+				</div>
+				
+				</div>
 
-				<div class="ln_solid"></div>
+
+		
+				<br /><br /><br />
 				<div class="form-group">
 					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 						<button class="btn btn-primary" type="button">Cancel</button>
@@ -120,10 +132,9 @@
 						<tr>
 							<th>Id</th>
 							<th>Ürün Adı</th>
-							<th>Firma Adı</th>
 							<th>İl</th>
 							<th>İlçe</th>
-							<th>Adet</th>
+							<th>Resim</th>
 							<th>İşlemler</th>
 
 						</tr>
@@ -131,16 +142,18 @@
 
 
 					<tbody>
-						<ui:repeat var="ls" value="#{stokTanimlamaBean.urunListesi}">
+						<ui:repeat var="ls" value="#{stokgirisiBean.stkgirisListesi}">
 
 							<tr>
 								<td id="td_id#{ls.id}">#{ls.id}</td>
-								<td id="td_ad#{ls.id}">#{ls.ad}</td>
-								<td id="td_adet#{ls.id}">#{ls.adet}</td>
-								<td id="td_barkod#{ls.id}">#{ls.barkod}</td>
-								<td id="td_fiyat#{ls.id}">#{ls.fiyat} tl</td>
-								<td id="td_kdv#{ls.id}">#{ls.kdv}</td>
-								<td style="text-align: right">
+								<td id="td_ad#{ls.id}">#{ls.urunadi}</td>
+								<td id="td_adet#{ls.id}">#{ls.iladi}</td>
+								<td id="td_barkod#{ls.id}">#{ls.ilceadi}</td>
+								<td id="td_fiyat#{ls.id}" style="text-align:center">
+								<img src="#{ls.url}" style="width:100px;height:100px"/>
+								
+								</td>
+									<td style="text-align: right">
 									<button type="button" onclick="duzenle(#{ls.id})"
 										class="btn btn-primary" data-toggle="modal"
 										data-target=".DuzenleModal">

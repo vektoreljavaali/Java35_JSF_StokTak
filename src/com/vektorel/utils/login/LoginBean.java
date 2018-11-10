@@ -26,6 +26,12 @@ public class LoginBean {
 		tblusers usr = db.ara(kullaniciadi, sifre);
 		
 		StaticValues.usr = usr;
+		if(usr !=null && usr.getAktivasyonid()==0) {
+			mesaj ="Bu Üyelik Aktif Deðildir. "
+					+ " \n Lütfen Mail Adresinize gelen link ile "
+					+ " \n Aktvasyon yapýnýz";
+			return navi.LoginSayfasiRedirect();
+		}
 		
 		if(usr != null && usr.getYetkiid()==1) {
 			islogged= true;

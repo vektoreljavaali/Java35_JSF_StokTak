@@ -20,7 +20,30 @@ public class tblusers {
 	private String sifre;
 	private String adsoyad;
 	private int yetkiid; // 2 ise admin 1 ise kullanici
+	private int aktivasyonid;// 0 ise pasif / 1 ise aktif
+	private String email;
+	private String kod;
 	
+	
+	
+	public int getAktivasyonid() {
+		return aktivasyonid;
+	}
+	public void setAktivasyonid(int aktivasyonid) {
+		this.aktivasyonid = aktivasyonid;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getKod() {
+		return kod;
+	}
+	public void setKod(String kod) {
+		this.kod = kod;
+	}
 	public Long getId() {
 		return id;
 	}
