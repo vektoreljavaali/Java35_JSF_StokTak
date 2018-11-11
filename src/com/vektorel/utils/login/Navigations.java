@@ -23,4 +23,11 @@ public class Navigations{
 		return "/login.jsf?faces-redirect=true";		
 	}
 	
+	public String kullaniciSayfasi() {
+		return "/KullaniciPanel/index.jsf";		
+	}
+	
+	public String kullaniciSayfasiRedirect() {
+		return "/KullaniciPanel/index.jsf?faces-redirect=true";		
+	}
 }

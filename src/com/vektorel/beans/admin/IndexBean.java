@@ -26,7 +26,9 @@ public class IndexBean {
 		
 		switch (id) {
 		case 1001:url="stoktanimlama.xhtml";break;
+		case 1002:url="excelstoktanimlama.xhtml";break;
 		case 1003:url="stokgirisi.xhtml";break;
+		
 		default:url="dashboard.xhtml";break;
 		}
 		

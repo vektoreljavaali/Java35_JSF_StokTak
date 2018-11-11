@@ -36,7 +36,7 @@ public class LoginBean {
 		if(usr != null && usr.getYetkiid()==1) {
 			islogged= true;
 			yetkiid = 1;
-			return navi.AdminAnasayfaRedirect();
+			return navi.kullaniciSayfasiRedirect();
 		}
 		if(usr != null && usr.getYetkiid()==2) {
 			islogged= true;

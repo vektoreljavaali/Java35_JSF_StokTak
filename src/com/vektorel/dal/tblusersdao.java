@@ -34,5 +34,25 @@ public class tblusersdao extends VeritabaniIsletimcisi<tblusers>{
          return null;   
      }// hata ekranı sonu
     }
+    
+    public tblusers ara(String kod) {
+        try{
+        ac();
+        Criteria cr = ss.createCriteria(tblusers.class);
+        cr.add(Restrictions.eq("kod", kod));
+        
+        tblusers tmp = (tblusers)cr.list().get(0);
+        kapat();
+        return tmp;        
+          }catch(Exception ex){
+            tbllog tmp = new tbllog();
+            tmp.setHataicerigi(ex.toString());
+            tmp.setMethodadi("arama");
+            tmp.setTarihsaat(LocalDateTime.now());
+            tmp.setKullaniciadi(StaticValues.kullaniciadi);
+            log.logkayit(tmp);            
+         return null;   
+     }// hata ekranı sonu
+    }
 	
 }
