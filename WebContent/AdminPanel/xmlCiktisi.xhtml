@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+<div class="col-md-12">
+	<div class="">
+		<div class="clearfix"></div>
+		<div class="row">
+
+
+			<p:panel header="ÜRÜN XML OLUŞTURMA ">
+					<p:panel header="Arama Kriterleri... ">
+						<p:panelGrid columns="8" style=" border-style: hidden !important;">
+
+						
+							<p:commandButton value="LİSTELENEN KAYITLARI XML' E DÖNÜŞÜR"
+								ajax="false" actionListener="#{xmlciktisiBean.xmldonustur()}">
+
+							</p:commandButton>
+
+
+
+						</p:panelGrid>
+
+					</p:panel>
+
+
+
+					<p:spacer height="15" />
+
+					<p:dataTable value="#{xmlciktisiBean.liste}" var="hb"
+						id="tbldetayliarama" style="width:100%" rowStyleClass="green"
+						rows="20" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,25,50,100,1000">
+
+
+						<p:column headerText="Id" width="100">
+							<h:outputText value="#{hb.id}" />
+						</p:column>
+
+						<p:column headerText="Urun Adı" width="100">
+
+							<h:outputText value="#{hb.ad}" />
+						</p:column>
+
+
+						<p:column headerText="Barkod" width="150">
+							<h:outputText value="#{hb.barkod}" />
+						</p:column>
+
+						<p:column headerText="Fiyat" width="85">
+							<h:outputText value="#{hb.fiyat}" />
+						</p:column>
+
+						
+
+					</p:dataTable>
+
+				
+			</p:panel>
+
+
+
+		</div>
+	</div>
+</div>
+
+
+</html>

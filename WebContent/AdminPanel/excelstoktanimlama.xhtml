@@ -15,26 +15,20 @@
 <h:body>
 <h:form>
 <p:growl id="messages" showDetail="true" />
- <h:outputLabel for="multiple" value="Multiple:" />
-        <p:selectCheckboxMenu id="multiple" 
-        value="#{excelStokTanimlamaBean.selectedCities2}" 
-        label="Cities" multiple="true"
-        filter="true" 
-        filterMatchMode="startsWith" 
-        panelStyle="width:250px">
-            <f:selectItems value="#{excelStokTanimlamaBean.cities}" />
-        </p:selectCheckboxMenu>
-       <br />
-        <h:commandButton value="Seçilenleri Göster" action="#{excelStokTanimlamaBean.yazdir}"/>
-
+ 
 <br /><br />
 
- <p:fileUpload value="#{excelStokTanimlamaBean.file}" mode="simple" skinSimple="true"/>
+ <p:fileUpload value="#{excelStokTanimlamaBean.file}"
+  fileUploadListener="#{excelStokTanimlamaBean.handleFileUpload}"
+  update="messages" sizeLimit="100000000" 
+  fileLimit="1" allowTypes="/(\.|\/)(xlx|xlsx)$/"
+   mode="advanced" 
+   
+   skinSimple="true"/>
      
     <br /> <br />
      
-    <h:commandButton
-value="Submit" 
+    <h:commandButton  value="Submit" 
 action="#{excelStokTanimlamaBean.upload}"  />
 
 
